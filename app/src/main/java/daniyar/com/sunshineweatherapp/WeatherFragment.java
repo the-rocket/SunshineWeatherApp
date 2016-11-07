@@ -91,7 +91,7 @@ public class WeatherFragment extends Fragment {
         final String key_param = "appid";
         final String format = "json";
         final String units = "metric";
-        final String password = "9fbf7bf916aa51d42f8dcaa0da0bd8e6";
+        final String password = "Your Password";
         final int numDays = 7;
         private StringBuffer jsonBuilder = new StringBuffer();
         private HttpURLConnection httpsURLConnection = null;
