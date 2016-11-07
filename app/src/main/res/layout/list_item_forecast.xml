@@ -7,6 +7,5 @@
     android:layout_height="match_parent"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:gravity="center"
-    android:text="Today_Sunny_88/63">
-
-</android.support.v7.widget.AppCompatTextView>
+    android:textColor="@color/Black"
+    android:text="Today_Sunny_88/63"/>
