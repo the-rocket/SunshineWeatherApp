@@ -1,5 +1,6 @@
 package daniyar.com.sunshineweatherapp;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,8 +13,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,17 +42,18 @@ import java.util.Locale;
 
 public class WeatherFragment extends Fragment {
 
+    final static String TAG = WeatherFragment.class.getSimpleName();
+
     private ArrayAdapter<String> adapter;
 
     public WeatherFragment() {
     }
 
-    //FetchWeatherTask weather = new FetchWeatherTask();
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        
     }
 
     @Override
@@ -58,10 +62,19 @@ public class WeatherFragment extends Fragment {
         View fragmentView = inflater.inflate(R.layout.fragment_main, container, false);
         //creating fake data
         String[] fakeData = {"Today - Foggy - 20/30", "Tomorr - Sunny - 30/35", "Weds - Soft Rain - 15/30", "Thurs - Sunny - 30/35", "Friday - Sunny - 30/35", "Sat - Sunny - 30/35", "Sun - Sunny - 30/35"};
-        ListView listView = (ListView) fragmentView.findViewById(R.id.listView_forecast);
+        final ListView listView = (ListView) fragmentView.findViewById(R.id.listView_forecast);
         List<String> listArray = new ArrayList<>(Arrays.asList(fakeData));
         adapter = new ArrayAdapter<>(getActivity(), R.layout.list_item_forecast, R.id.list_item_forecast_textView, listArray);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(parent.getContext(), "clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(parent.getContext(),DetailActivity.class);
+                intent.putExtra(Intent.EXTRA_TEXT, adapter.getItem(position));
+                startActivity(intent);
+            }
+        });
         return fragmentView;
     }
 

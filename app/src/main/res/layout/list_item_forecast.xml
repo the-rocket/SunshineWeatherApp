@@ -8,4 +8,5 @@
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:gravity="center"
     android:textColor="@color/Black"
+    android:background="@color/BlueGrey.50"
     android:text="Today_Sunny_88/63"/>
